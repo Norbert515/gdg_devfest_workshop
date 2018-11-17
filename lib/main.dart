@@ -150,7 +150,7 @@ class TaskTile extends StatelessWidget {
     return new Row(
       children: <Widget>[
         new Checkbox(value: task.done, onChanged: onChanged),
-        new Text(task.text),
+        new Text(task.text, style: TextStyle(decoration: task.done? TextDecoration.lineThrough: null)),
       ],
     );
   }
@@ -208,14 +208,13 @@ class TaskInput extends StatelessWidget {
               controller: textEditingController,
               decoration: InputDecoration.collapsed(hintText: "Enter a task"),
             )),
-            FloatingActionButton(
-              mini: true,
+            IconButton(
+              icon: Icon(Icons.send, color: Theme.of(context).primaryColor,),
               onPressed: () {
                 String text = textEditingController.text;
                 textEditingController.text = "";
                 onAddTask(text);
               },
-              child: Icon(Icons.send),
             ),
           ],
         ),
